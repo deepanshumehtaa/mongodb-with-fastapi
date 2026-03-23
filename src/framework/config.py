@@ -1,0 +1,25 @@
+import os
+import sys
+
+
+MAD_BOOK_MONGODB_URL = os.environ.get("MAD_BOOK_MONGODB_URL", "mongodb://localhost:27017")
+PASSWORD_ENCRYPT_SALT = os.environ.get("PASSWORD_ENCRYPT_SALT", 'SON2n9jzw8L8IBawVNnccg==').encode("utf-8")
+TOKEN_ENCRYPT_SALT = os.environ.get("TOKEN_ENCRYPT_SALT", "c").encode("utf-8")
+REG_KEY = os.environ.get("REG_KEY", "test_1234")
+
+
+if not all((MAD_BOOK_MONGODB_URL, PASSWORD_ENCRYPT_SALT, TOKEN_ENCRYPT_SALT)):
+    print("Please set MAD_BOOK_MONGODB_URL/PASSWORD_ENCRYPT_SALT/TOKEN_ENCRYPT_SALT!")
+    sys.exit(1)
+
+
+PROJECT_DATABASE_NAME = "madbook"
+TOKEN_ALGORITHM = "HS256"
+TOKEN_EXPIRE = 3600 * 24 * 30
+TOKEN_KEY = "mad_token"
+
+
+LIMIT_DAILY_BILLS_CNT = 100
+LIMIT_BOOKS_CNT = 10
+LIMIT_ACCOUNTS_CNT = 20
+LIMIT_CATEGORIES_CNT = 50
